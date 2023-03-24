@@ -19,7 +19,7 @@ import java.util.List;
 @Service
 public class EvaluateServiceImpl implements EvaluateService {
 
-    private static final String REPO_ISSUES_API = "https://api.github.com/repos/LiuLiujie/ProVerBMate/issues";
+    private static final String REPO_ISSUES_API = "https://api.github.com/repos/Sophietje/ProVerBMate/issues";
 
     @Resource
     private GitHubService githubService;

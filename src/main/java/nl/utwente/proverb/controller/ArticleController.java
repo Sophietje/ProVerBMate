@@ -2,7 +2,7 @@ package nl.utwente.proverb.controller;
 
 import lombok.extern.log4j.Log4j2;
 import nl.utwente.proverb.domain.dto.article.ArticleDTO;
-import nl.utwente.proverb.domain.ontology.PROVERB;
+import nl.utwente.proverb.ontology.PROVERB;
 import nl.utwente.proverb.service.ArticleService;
 import nl.utwente.proverb.service.OntologyService;
 import org.apache.jena.rdf.model.Resource;

@@ -1,4 +1,4 @@
-package nl.utwente.proverb.domain.ontology;
+package nl.utwente.proverb.ontology;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;

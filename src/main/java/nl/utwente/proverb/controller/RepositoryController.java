@@ -1,7 +1,7 @@
 package nl.utwente.proverb.controller;
 
 import lombok.extern.log4j.Log4j2;
-import nl.utwente.proverb.domain.ontology.PROVERB;
+import nl.utwente.proverb.ontology.PROVERB;
 import nl.utwente.proverb.service.GitHubService;
 import nl.utwente.proverb.service.OntologyService;
 import nl.utwente.proverb.util.DateUtil;
