@@ -83,7 +83,7 @@ public class ToolParser {
                     default:
                         List<String> defaults = readSection(br);
                         tool.addProperty(line, defaults);
-                        System.err.println("Undefined header in MD file:" + line);
+                        System.err.println("Undefined header in "+input.getName()+": "+line);
                         break;
                 }
                 if (memory != null) line = memory; else line = br.readLine();

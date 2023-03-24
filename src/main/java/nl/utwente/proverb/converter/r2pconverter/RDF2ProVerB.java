@@ -68,7 +68,7 @@ public class RDF2ProVerB {
                     newFiles.addAll(getFiles(new ArrayList<>(List.of(fs))));
                 }
             }
-            if (file.isFile() && !file.getName().contains("README.md")){
+            if (file.isFile() && !file.getName().contains("README.md") && !file.getName().contains(".DS_Store")){
                 newFiles.add(file);
             }
         }
