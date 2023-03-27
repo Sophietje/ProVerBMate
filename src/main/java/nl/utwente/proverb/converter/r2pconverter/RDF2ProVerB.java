@@ -1,8 +1,6 @@
 package nl.utwente.proverb.converter.r2pconverter;
 
-import nl.utwente.proverb.converter.r2pconverter.mdparser.ToolParser;
-import nl.utwente.proverb.converter.r2pconverter.model.PVBModel;
-import nl.utwente.proverb.converter.r2pconverter.subanalyzers.PaperAnalyzer;
+import nl.utwente.proverb.converter.r2pconverter.converter.Tool2Tool;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -22,17 +20,23 @@ public class RDF2ProVerB {
             toolsPath = args[1] + "/Tools";
         }
 
-        var model = new PVBModel(loadModelFile());
+        var model = loadModelFile();
 
         var tools = loadTools();
         //var tools = loadDemo();
-
+        Tool2Tool converter;
         for (File tool : tools){
-            var parser = new ToolParser(tool);
-            var mdTool = parser.read(tool);
-            BaseAnalyzer analyzer = new PaperAnalyzer(model, mdTool);
-            analyzer.autoEnrichment();
-            parser.write(mdTool);
+            converter = new Tool2Tool.Builder(model, tool)
+                    .loadRelatedPapers(true)
+                    .loadRepositories(true)
+                    .loadRepoLastCommitTime(true)
+                    .build();
+            converter.convert();
+//            var parser = new ToolParser(tool);
+//            var mdTool = parser.read(tool);
+//            BaseAnalyzer analyzer = new PaperAnalyzer(model, mdTool);
+//            analyzer.autoEnrichment();
+//            parser.write(mdTool);
         }
     }
 
