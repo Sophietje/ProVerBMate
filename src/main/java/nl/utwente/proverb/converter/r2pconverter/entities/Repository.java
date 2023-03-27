@@ -14,11 +14,13 @@ public class Repository {
 
     private String name;
 
-    private String abs;
+    private String abs; // Abstract, i.e. brief description of the repo
 
     private List<Contributor> contributors;
 
     private String lastCommitDate;
+
+    private String lastActivityDate;
 
     private String url;
 
@@ -29,5 +31,16 @@ public class Repository {
         private String name;
 
         private String url;
+    }
+
+    public String getLongName() {
+        String copyUrl = url;
+        String[] parts;
+        if (copyUrl.contains("github.com/")) {
+            parts = copyUrl.split("github.com/");
+            // E.g. if you have "https://github.com/Sophietje/ProVerBMate" it should return "Sophietje/ProVerBMate"
+            return parts[1];
+        }
+        return getName();
     }
 }

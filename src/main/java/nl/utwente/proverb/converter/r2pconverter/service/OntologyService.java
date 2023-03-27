@@ -43,6 +43,7 @@ public class OntologyService {
             dto.setUrl(node.toString());
             this.getSingleProperty(node, PROVERB.P_NAME).ifPresent(dto::setName);
             this.getSingleProperty(node, PROVERB.P_LAST_COMMIT_DATE).ifPresent(dto::setLastCommitDate);
+            this.getSingleProperty(node, PROVERB.P_LAST_ACTIVITY_DATE).ifPresent(dto::setLastActivityDate);
             repos.add(dto);
         }
         return repos;

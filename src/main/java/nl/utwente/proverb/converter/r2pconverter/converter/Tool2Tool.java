@@ -1,11 +1,14 @@
 package nl.utwente.proverb.converter.r2pconverter.converter;
 
 import lombok.Getter;
+import nl.utwente.proverb.converter.r2pconverter.dto.Article;
+import nl.utwente.proverb.converter.r2pconverter.entities.Repository;
 import nl.utwente.proverb.converter.r2pconverter.mdwriters.ToolMDWriter;
 import nl.utwente.proverb.converter.r2pconverter.service.OntologyService;
 import org.apache.jena.rdf.model.Resource;
 
 import java.io.File;
+import java.util.List;
 
 public class Tool2Tool implements Converter{
 
@@ -105,24 +108,13 @@ public class Tool2Tool implements Converter{
     @Override
     public void convert() {
         var insName = tool.getName().split(".md")[0].replace(" ","_");
-        System.err.println("Converting: "+insName);
+        System.out.println("Converting: "+insName);
         var toolResource = ontologyService.getTool(insName);
         ToolMDWriter writer = new ToolMDWriter(tool, this);
-
-        convertRepos(toolResource, writer);
-        convertArticle(toolResource, writer);
-
-        writer.write();
-        System.err.println("Done");
+        List<Repository> repos = ontologyService.getRepositories(toolResource);
+        List<Article> articles = ontologyService.getArticles(toolResource);
+        writer.write(repos, articles);
+        System.out.println("Done");
     }
 
-    private void convertRepos(Resource toolResource, ToolMDWriter writer) {
-        var repos = ontologyService.getRepositories(toolResource);
-        writer.convertRepositories(repos);
-    }
-
-    private void convertArticle(Resource toolResource, ToolMDWriter writer) {
-        var articles = ontologyService.getArticles(toolResource);
-        writer.convertArticles(articles);
-    }
 }
