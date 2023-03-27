@@ -36,7 +36,8 @@ public class ToolMDWriter {
 //        }
         // Add last commit & activity dates for repos
         if (config.isLoadRepoLastCommitTime() && mdLinks != null) {
-            tool.setProperty(MDToolTemplate.LAST_COMMIT_DATE, addLastCommitAndActivityDate(repos));
+            List<String> mdText = tool.getProperty(MDToolTemplate.LAST_COMMIT_DATE);
+            tool.setProperty(MDToolTemplate.LAST_COMMIT_DATE, addLastCommitAndActivityDate(mdText, repos));
         }
         // Replace article links by name + link
         List<String> mdArticles = tool.getProperty(MDToolTemplate.PAPERS);
@@ -76,25 +77,26 @@ public class ToolMDWriter {
         return result;
     }
 
-    private List<String> addLastCommitAndActivityDate(List<Repository> repositories) {
+    private List<String> addLastCommitAndActivityDate(List<String> markdownText, List<Repository> repositories) {
         List<String> result = new ArrayList<>();
-        for (Repository r: repositories) {
-            if (r.getLastCommitDate() != null) {
-                if (repositories.size() == 1) {
-                    result.add(r.getLastCommitDate() + " (default branch)");
-                } else {
-                    // Add repository's name to distinguish dates if there are multiple repos
-                    result.add(r.getLongName() + ": " + r.getLastCommitDate() + " (default branch)");
-                }
-            }
-            if (r.getLastActivityDate() != null) {
-                if (repositories.size() == 1) {
-                    result.add(r.getLastActivityDate() + " (last activity)");
-                } else {
-                    result.add(r.getLongName() + ": " + r.getLastActivityDate() + " (last activity)");
+        if (markdownText != null) {
+            for (String line : markdownText) {
+                if (!line.isEmpty() && !line.contains("(default branch)") && !line.contains("(last activity)")) {
+                    result.add(line); // Will not copy old dates that were automatically added so they can be updated
                 }
             }
         }
+        for (Repository r: repositories) {
+            if (r.getLastCommitDate() != null) {
+                if (repositories.size() == 1) {
+                    result.add(r.getLastCommitDate() + " (last activity)");
+                } else {
+                    // Add repository's name to distinguish dates if there are multiple repos
+                    result.add(r.getLongName() + ": " + r.getLastCommitDate() + " (last activity)");
+                }
+            }
+        }
+        if (result.size() > 0) result.set(result.size()-1, result.get(result.size()-1)+"\n");
         return result;
     }
 

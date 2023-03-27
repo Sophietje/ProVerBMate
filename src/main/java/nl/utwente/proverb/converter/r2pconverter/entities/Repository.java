@@ -20,8 +20,6 @@ public class Repository {
 
     private String lastCommitDate;
 
-    private String lastActivityDate;
-
     private String url;
 
     @Getter
