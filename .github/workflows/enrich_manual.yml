@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checkout ProVerBMate repository
+        uses: actions/checkout@v3
 
       # Set Java environment
       - name: Set up JDK 11
@@ -35,10 +36,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Download data repository (Verification-Tool-Overview)
+      - name: Checkout data repository (Verification-Tool-Overview)
         uses: actions/checkout@v3
         with:
             repository: Sophietje/Verification-Tool-Overview
+            path: Verification-Tool-Overview
       
       # Download
       - uses: actions/download-artifact@v3
