@@ -48,7 +48,7 @@ jobs:
           name: ProVerBMate
 
       - name: Setup tmate session
-          if: success() || failure()
+          if: ${{ failure() }}
           uses: mxschmitt/action-tmate@v3
 
       # Set Java environment
