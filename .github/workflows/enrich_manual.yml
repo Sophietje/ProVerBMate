@@ -48,8 +48,7 @@ jobs:
           name: ProVerBMate
 
       - name: Setup tmate session
-          if: ${{ failure() }}
-          uses: mxschmitt/action-tmate@v3
+        uses: mxschmitt/action-tmate@v3
 
       # Set Java environment
       - name: Set up JDK 11
