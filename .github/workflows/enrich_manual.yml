@@ -1,4 +1,4 @@
-name: Manual Enrichment
+name: Manual Build for ProVerBMate
 
 on:
   # Allows you to run this workflow manually from the Actions tab
@@ -26,51 +26,17 @@ jobs:
           mvn package -DskipTests
           echo Maven package success
 
-      #Upload
+      #Upload ProVerBMate artifact
       - uses: actions/upload-artifact@v3
         with:
           name: ProVerBMate
           path: target/ProVerBMate-1.6.0.jar
           
-
-      #Upload
+      #Upload ProVerB's ontology file
       - uses: actions/upload-artifact@v3
         with:
           name: Ontology
           path: ProVerB_1.6.0.owl
-
-  enrich:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout data repository (Verification-Tool-Overview)
-        uses: actions/checkout@v3
-        with:
-            repository: Sophietje/Verification-Tool-Overview
-            path: Verification-Tool-Overview
-      
-      - uses: actions/download-artifact@v3
-        with:
-          name: Ontology
-      
-      # Download
-      - uses: actions/download-artifact@v3
-        with:
-          name: ProVerBMate
-          
-      # Set Java environment
-      - name: Set up JDK 11
-        uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
-      # Convert
-      - name: Enrichment
-        run: |
-          chmod 0755 ProVerBMate-1.6.0.jar
-          java -jar ProVerBMate-1.6.0.jar --spring.profiles.active=daily --github-token=${{secrets.GIT_API}} --springer-key=${{secrets.SPRINGER_KEY}} --cross-ref.mailto=${{secrets.CROSS_REF}}
-          echo Enrichment success.
 
       # Release
       - name: Get current date
@@ -84,5 +50,5 @@ jobs:
           prerelease: false
           title: "${{ steps.date.outputs.date }}"
           files: |
-            enriched_ProVerB_1.6.0.owl
+            ProVerB_1.6.0.owl
             *.jar
