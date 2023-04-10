@@ -11,9 +11,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout ProVerBMate repository
         uses: actions/checkout@v3
-        
-      - uses: mxschmitt/action-tmate@v3
-        name: Setup tmate session
 
       # Set Java environment
       - name: Set up JDK 11
@@ -40,7 +37,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Ontology
-          path: ProVerB-1.6.0.owl
+          path: ProVerB_1.6.0.owl
 
   enrich:
     needs: build
