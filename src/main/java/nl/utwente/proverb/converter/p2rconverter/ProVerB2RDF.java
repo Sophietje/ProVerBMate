@@ -1,6 +1,7 @@
 package nl.utwente.proverb.converter.p2rconverter;
 
 
+import nl.utwente.proverb.ProVerBMateApplication;
 import nl.utwente.proverb.converter.p2rconverter.converter.Tool2Tool;
 import nl.utwente.proverb.converter.p2rconverter.service.OntologyService;
 
@@ -10,12 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProVerB2RDF {
-
     private static String modelPath = "ProVerB_1.6.0.owl";
 
     private static String toolsPath = "[ENTER DEFAULT PATH]";
 
-    private static final String demoTool = "Verification-tools-vault/Tools/Checkers/AGREE.md";
+    private static final String demoTool = "ACL2.md";
 
     public static void main(String[] args) {
         if (args.length ==2){
@@ -24,8 +24,7 @@ public class ProVerB2RDF {
         }
 
         var model = loadModelFile();
-        var tools = loadTools();
-        //var tools = loadDemo();
+        var tools = ProVerBMateApplication.demoTime ? loadDemo() : loadTools();
         Tool2Tool converter;
         OntologyService ontologyService = new OntologyService(model);
         for (File tool : tools){
@@ -51,7 +50,7 @@ public class ProVerB2RDF {
 
     private static List<File> loadDemo(){
         var list = new ArrayList<File>(1);
-        list.add(new File(demoTool));
+        list.add(new File(toolsPath + "/" + demoTool));
         return list;
     }
 
