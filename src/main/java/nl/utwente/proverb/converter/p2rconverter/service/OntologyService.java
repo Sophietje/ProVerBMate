@@ -19,7 +19,7 @@ public class OntologyService {
 
     private final Model model;
 
-    public OntologyService(File modelFile){
+    public OntologyService(File modelFile) {
         this.model = ModelFactory.createDefaultModel().read(modelFile.getAbsolutePath());
     }
 

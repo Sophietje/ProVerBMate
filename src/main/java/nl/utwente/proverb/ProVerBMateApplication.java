@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class ProVerBMateApplication {
     public final static boolean demoTime = true;
-    private final static String ontologyFilename = "ProVerBMate/ProVerB_1.6.0.owl";
+    private final static String ontologyFilename = "ProVerB_1.6.0.owl";
     private final static String enrichedOntologyFilename = "enriched_ProVerB_1.6.0.owl";
 
     private final static String toolDirectory = "../Verification-Tool-Overview/Tools";
