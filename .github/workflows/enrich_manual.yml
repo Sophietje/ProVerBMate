@@ -43,6 +43,9 @@ jobs:
         id: date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GIT_API }}"
