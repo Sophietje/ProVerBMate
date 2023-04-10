@@ -12,7 +12,7 @@ public class ProVerBMateApplication {
     private final static String ontologyFilename = "ProVerB_1.6.0.owl";
     private final static String enrichedOntologyFilename = "enriched_ProVerB_1.6.0.owl";
 
-    private final static String toolDirectory = "../Verification-Tool-Overview/Tools";
+    private final static String toolDirectory = "Verification-Tool-Overview/Tools";
 
     public static void main(String[] args) {
         /**
