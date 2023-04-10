@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: Ontology
-          path: ProVerBMate-1.6.0.owl
+          path: ProVerB-1.6.0.owl
 
   enrich:
     needs: build
