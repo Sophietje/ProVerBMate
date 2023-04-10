@@ -9,7 +9,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class ProVerBMateApplication {
     public final static boolean demoTime = true;
-    private final static String ontologyFilename = "ProVerB_1.6.0.owl";
+    private final static String ontologyFilename = "ProVerBMate/ProVerB_1.6.0.owl";
     private final static String enrichedOntologyFilename = "enriched_ProVerB_1.6.0.owl";
 
     private final static String toolDirectory = "../Verification-Tool-Overview/Tools";
@@ -22,7 +22,6 @@ public class ProVerBMateApplication {
          * --springer-key={{SPRINGER_KEY}}: API Key used to make authenticated Springer API requests
          * --cross-ref.mailto={{CROSS_REF_MAIL}}: E-mail that is used to contact you in case of improper use of the API
          */
-
         String[] mdToRDFArgs = {toolDirectory, ontologyFilename};
         ProVerB2RDF.main(mdToRDFArgs);
 
