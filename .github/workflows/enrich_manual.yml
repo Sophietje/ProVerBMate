@@ -54,4 +54,4 @@ jobs:
           title: "${{ steps.date.outputs.date }}"
           files: |
             ProVerB_1.6.0.owl
-            *.jar
+            target/ProVerBMate-1.6.0.jar
